@@ -4,21 +4,21 @@ package game.controllers;
 import game.context.GameContext;
 import game.core.chooseFate.History;
 import game.core.chooseFate.Litigation;
+import game.utility.Utilities;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import game.utility.Utilities;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Random;
 
 @RestController
-@RequestMapping("/game commands")
-@Api(value = "game commands", description = "list of mini-game commands")
+@RequestMapping("/gameСommands")
+@Api(value = "gameСommands", description = "list of mini-game commands")
 public class ChooseFateController {
     History history;
-    @RequestMapping(method = RequestMethod.GET, value = "/get ligation")
+    @RequestMapping(method = RequestMethod.GET, value = "/getLigation")
         public Litigation getLigation() {
         Object[] allHistories = Utilities.getAllBeanConcClass(History.class);
 
@@ -30,7 +30,7 @@ public class ChooseFateController {
         return history.getLitigation();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/set  sequence")
+    @RequestMapping(method = RequestMethod.POST, value = "/setSequence")
     public void setSequence(@ApiIgnore GameContext gameContext, boolean choice)
     {
         if(choice)

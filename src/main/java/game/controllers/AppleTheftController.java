@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/game commands")
-@Api(value = "game commands", description = "list of mini-game commands")
+@RequestMapping("/gameСommands")
+@Api(value = "gameСommands", description = "list of mini-game commands")
 public class AppleTheftController {
     static Garden garden = new Garden();
 
