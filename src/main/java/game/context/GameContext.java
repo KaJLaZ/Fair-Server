@@ -1,6 +1,7 @@
 package game.context;
 
 import org.springframework.stereotype.Component;
+
 @Component
 public class GameContext {
     private boolean hasMoney;
