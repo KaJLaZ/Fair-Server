@@ -1,0 +1,44 @@
+package game.controllers;
+
+import game.core.drinkers.Game;
+import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/gameCommands")
+@Api(value = "gameCommands", description = "list of mini-game commands")
+public class DrinkersController {
+    static Game game = new Game();
+
+    @RequestMapping(method = RequestMethod.GET,value ="/drink")
+    public int[] drink(){
+        game.getPlayer().drink();
+        game.getNpc().npcDrink();
+        int[] stats={game.getPlayer().getAlcohol(),game.getNpc().getAlcohol()};
+        return stats;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/pass")
+    public int[] pass(){
+        game.getPlayer().pass();
+        while (game.getNpc().getAlcohol()<950){
+            game.getNpc().npcDrink();
+        }
+        int[] stats={game.getPlayer().getAlcohol(),game.getNpc().getAlcohol()};
+        return stats;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/winner")
+    public boolean isWon(){
+        return game.getWinner();
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "/prediction")
+    public boolean isPredictioner(){
+        return game.getPlayer().isAbleToSeePrediction();
+    }
+
+}
