@@ -9,6 +9,7 @@ public class Game {
     private Player npc;
     private boolean isEnd=false;
     private boolean isWon=false;
+    private String winner;
 
 
     public Game() {
@@ -16,23 +17,30 @@ public class Game {
         this.npc = new Player("NPC");
     }
 
+    public String whoIsWinner(){
+        winner=chooseWinner();
+        return winner;
+    }
+
     public String chooseWinner(){
-        if (isEnd&&player.getAlcohol()<=1000&&player.getAlcohol()>npc.getAlcohol()&&npc.getAlcohol()<1000){
-            isWon=!isWon;
-            player.becomeAbleToSeePrediction();
-            return "You have won";
-        }else if(player.getAlcohol()>1000&&npc.getAlcohol()>1000){
-            return "Draw";
-        }
-        else if(isEnd&&player.getAlcohol()<=1000&&npc.getAlcohol()>1000){
-            player.becomeAbleToSeePrediction();
-            return "You have won";
-        }else {
-            if(player.getAlcohol()<=1000){
-                player.becomeAbleToSeePrediction();
-            }
-            return "You have lost";
-        }
+       if (player.getAlcohol()>1000){
+           if (npc.getAlcohol()>1000){
+               return "Draw";
+           }else if (npc.getAlcohol()<1000){
+               return "You have lost";
+           }
+       }else if (player.getAlcohol()<=1000){
+           player.becomeAbleToSeePrediction();
+           if (npc.getAlcohol()>1000){
+               return "You have won";
+           }
+           if (player.getAlcohol()>npc.getAlcohol()){
+               return "You have won";
+           }else if (player.getAlcohol()<npc.getAlcohol()&&npc.getAlcohol()<1000){
+               return "You have lost";
+           }
+       }
+        return null;
     }
 
     public boolean getWinner(){

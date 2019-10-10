@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/gameСommands")
-@Api(value = "gameСommands", description = "list of mini-game commands")
+@RequestMapping("/gameCommands")
+@Api(value = "gameCommands", description = "list of mini-game commands")
 public class AppleTheftController {
     static Garden garden = new Garden();
 
@@ -22,25 +22,25 @@ public class AppleTheftController {
         return garden.getMap();
     }
 
-    @RequestMapping(method = RequestMethod.PATCH, value = "/up")
+    @RequestMapping(method = RequestMethod.GET, value = "/up")
     public int[][] up() {
         garden.up();
         return garden.getMap();
     }
 
-    @RequestMapping(method = RequestMethod.PATCH, value = "/down")
+    @RequestMapping(method = RequestMethod.GET, value = "/down")
     public int[][] down() {
         garden.down();
         return garden.getMap();
     }
 
-    @RequestMapping(method = RequestMethod.PATCH, value = "/left")
+    @RequestMapping(method = RequestMethod.GET, value = "/left")
     public int[][] left() {
         garden.left();
         return garden.getMap();
     }
 
-    @RequestMapping(method = RequestMethod.PATCH, value = "/right")
+    @RequestMapping(method = RequestMethod.GET, value = "/right")
     public int[][] right() {
         garden.right();
         return garden.getMap();

@@ -31,8 +31,9 @@ public class DrinkersController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/winner")
-    public boolean isWon(){
-        return game.getWinner();
+    public String whoHasWon(){
+        String s= '\"' + game.whoIsWinner() + '\"';
+        return s;
     }
 
 
