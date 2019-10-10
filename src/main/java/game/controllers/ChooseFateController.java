@@ -14,8 +14,8 @@ import springfox.documentation.annotations.ApiIgnore;
 import java.util.Random;
 
 @RestController
-@RequestMapping("/gameСommands")
-@Api(value = "gameСommands", description = "list of mini-game commands")
+@RequestMapping("/gameCommands")
+@Api(value = "gameCommands", description = "list of mini-game commands")
 public class ChooseFateController {
     History history;
     @RequestMapping(method = RequestMethod.GET, value = "/getLigation")
