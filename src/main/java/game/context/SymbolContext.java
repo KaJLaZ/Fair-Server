@@ -6,20 +6,20 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SymbolContext {
-    @Bean("standardRun")
-    public Symbol getStandartRun() {
+    @Bean
+    public Symbol StandardRun() {
 
-        boolean[][] standart =  {{true, true, false, false},
+        boolean[][] standard =  {{true, true, false, false},
                 {true, false, true, false},
                 {true, false, true, true},
                 {true, false, false, true}
         };
 
-        return new Symbol(standart);
+        return new Symbol(standard);
     }
 
-    @Bean("coldRun")
-    public Symbol getColdRun() {
+    @Bean
+    public Symbol ColdRun() {
 
         boolean[][] cold = {{false, true, true, false},
                 {false, true, true, false},
@@ -30,8 +30,8 @@ public class SymbolContext {
         return new Symbol(cold);
     }
 
-    @Bean("warmRun")
-    public Symbol getWarmRun() {
+    @Bean
+    public Symbol WarmRun() {
 
         boolean[][] warm = {{true, false, false, false},
                 {true, false, true, true},
@@ -42,8 +42,8 @@ public class SymbolContext {
         return new Symbol(warm);
     }
 
-    @Bean("dangerRun")
-    public Symbol getDangerRun() {
+    @Bean
+    public Symbol DangerRun() {
 
         boolean[][] danger = {{true, true, false, false},
                 {true, false, true, false},
@@ -54,8 +54,8 @@ public class SymbolContext {
         return new Symbol(danger);
     }
 
-    @Bean("fragileRun")
-    public Symbol getFragileRun() {
+    @Bean
+    public Symbol FragileRun() {
 
         boolean[][] fragile = {{true, false, true, true},
                 {true, true, false, true},

@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class HistoryContext {
-    @Bean("painter")
-    public History getPainter(){
+    @Bean
+    public History Painter(){
         String personDescription = "Спадкоємець сім'ї Штайманн, перший свого імені, Кернал Штайманн. Студент\n" +
                 " Окреанського університет мистецтв, один з головних ініціаторів зимової виставки картин в\n" +
                 " їхньому родинному замку. Автор 24 картин з цієї самої виставки. Частий гість таверни, в чому\n" +
@@ -52,8 +52,8 @@ public class HistoryContext {
 
         return new History(litigation, posSequence, negSequence);
     }
-    @Bean("military")
-    public History getMilitary(){
+    @Bean
+    public History Military(){
         String personDescription = "Голова однієї з 3 родів лордів цього краю Камаель Саргас. Ветерат війни королівст,\n" +
                 "герой Парузької бойні і голова свого роду.";
 
@@ -96,8 +96,8 @@ public class HistoryContext {
 
         return new History(litigation, posSequence, negSequence);
     }
-    @Bean("politician")
-    public History getPolitician(){
+    @Bean
+    public History Politician(){
         String personDescription = "Зі слів закутого в колодки без іменний іноземець\n";
 
         String faultDescription = "Посмів нагрубити дружині нашого всіма поважаємого шерифа. Любий мужчина почувший \n" +

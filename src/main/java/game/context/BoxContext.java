@@ -7,39 +7,40 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BoxContext {
-    @Bean("boxWithPotato")
-    public Box getBoxWithPotato(Symbol standartRun, Symbol fragileRun , Symbol coldRun, Symbol dangerRun){
-        return new Box("potato", new Symbol[]{standartRun, fragileRun, coldRun, dangerRun});
+
+    @Bean
+    public Box BoxWithPotato(Symbol StandardRun, Symbol FragileRun , Symbol ColdRun, Symbol DangerRun){
+        return new Box("potato", new Symbol[]{StandardRun, FragileRun, ColdRun, DangerRun});
     }
-    @Bean("boxWithCristalVase")
-    public Box getBoxWithCristalVase(Symbol fragileRun , Symbol dangerRun){
-        return new Box("cristal vase", new Symbol[]{fragileRun, dangerRun});
+    @Bean
+    public Box BoxWithCristalVase(Symbol FragileRun , Symbol DangerRun){
+        return new Box("cristal vase", new Symbol[]{FragileRun, DangerRun});
     }
-    @Bean("boxWithSnake")
-    public Box getBoxWithSnake(Symbol dangerRun){
-        return new Box("snake", new Symbol[]{dangerRun});
+    @Bean
+    public Box BoxWithSnake(Symbol DangerRun){
+        return new Box("snake", new Symbol[]{DangerRun});
     }
 
-    @Bean("boxWithIce")
-    public Box getBoxWithIce( Symbol coldRun){
-        return new Box("ice", new Symbol[]{coldRun});
+    @Bean
+    public Box BoxWithIce( Symbol ColdRun){
+        return new Box("ice", new Symbol[]{ColdRun});
     }
 
-    @Bean("boxWithSchnapps")
-    public Box getBoxWithSchnapps(Symbol standartRun, Symbol fragileRun , Symbol coldRun){
-        return new Box("schnapps", new Symbol[]{standartRun, fragileRun, coldRun});
+    @Bean
+    public Box BoxWithSchnapps(Symbol StandardRun, Symbol FragileRun , Symbol ColdRun){
+        return new Box("schnapps", new Symbol[]{StandardRun, FragileRun, ColdRun});
     }
-    @Bean("boxWithOil")
-    public Box getBoxWithOil(Symbol standartRun, Symbol coldRun){
-        return new Box("oil", new Symbol[]{standartRun, coldRun});
+    @Bean
+    public Box BoxWithOil(Symbol StandardRun, Symbol ColdRun){
+        return new Box("oil", new Symbol[]{StandardRun, ColdRun});
     }
-    @Bean("boxWithDesk")
-    public Box getBoxWithGlass(Symbol standartRun, Symbol fragileRun , Symbol coldRun, Symbol warmRun){
-        return new Box("glass", new Symbol[]{standartRun, fragileRun, coldRun, warmRun});
+    @Bean
+    public Box BoxWithGlass(Symbol StandardRun, Symbol FragileRun , Symbol ColdRun, Symbol WarmRun){
+        return new Box("glass", new Symbol[]{StandardRun, FragileRun, ColdRun, WarmRun});
     }
-    @Bean("boxWithCake")
-    public Box getBoxWithCake(Symbol standartRun, Symbol coldRun){
-        return new Box("cake", new Symbol[]{standartRun, coldRun});
+    @Bean
+    public Box BoxWithCake(Symbol StandardRun, Symbol ColdRun){
+        return new Box("cake", new Symbol[]{StandardRun, ColdRun});
     }
 }
 
