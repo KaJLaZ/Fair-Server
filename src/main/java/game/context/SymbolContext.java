@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SymbolContext {
-    @Bean("standartRun")
+    @Bean("standardRun")
     public Symbol getStandartRun() {
 
         boolean[][] standart =  {{true, true, false, false},
