@@ -1,6 +1,6 @@
 package game.controllers;
 
-import game.context.GameContext;
+import game.context.MapDb;
 import game.core.drawRuns.Box;
 import game.utility.Utilities;
 import io.swagger.annotations.Api;
@@ -26,7 +26,7 @@ public class DrawRunsController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/issueSalary")
-    public void issueSalary(@ApiIgnore GameContext gameContext, boolean isIssueSalary) {
-        gameContext.setHasMoney(isIssueSalary);
+    public void issueSalary(@ApiIgnore MapDb mapBase, Boolean isIssueSalary) {
+        mapBase.replace(isIssueSalary.getClass(), "isIssueSalary", isIssueSalary);
     }
 }

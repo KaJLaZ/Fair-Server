@@ -1,7 +1,7 @@
 package game.controllers;
 
 
-import game.context.GameContext;
+import game.context.MapDb;
 import game.core.chooseFate.History;
 import game.core.chooseFate.Litigation;
 import game.utility.Utilities;
@@ -31,12 +31,12 @@ public class ChooseFateController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/setSequence")
-    public void setSequence(@ApiIgnore GameContext gameContext, boolean choice)
+    public void setSequence(@ApiIgnore MapDb mapBase, boolean choice)
     {
         if(choice)
-            gameContext.setSequence(history.getPosSequence());
+            mapBase.replace(String.class,"consequence", history.getPosSequence());
 
         else
-            gameContext.setSequence(history.getNegSequence());
+            mapBase.replace(String.class,"consequence", history.getNegSequence());
     }
 }
