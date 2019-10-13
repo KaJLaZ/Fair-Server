@@ -10,7 +10,17 @@ public class Game {
     }
 
     public enum Games{
-        APPLE_THEFT, CHOOSE_FATE, DRAW_RUNS, DRINKERS, SEQUENCE
+        APPLE_THEFT(1), CHOOSE_FATE(2), DRAW_RUNS(3), DRINKERS(4), SEQUENCE(5);
+
+        private int numberOfGame;
+
+        public int getNumberOfGame() {
+            return numberOfGame;
+        }
+
+        Games(int numberOfGame) {
+            this.numberOfGame = numberOfGame;
+        }
     }
 
     Games game;
