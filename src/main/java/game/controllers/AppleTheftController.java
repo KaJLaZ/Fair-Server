@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/gameCommands")
 @Api(value = "gameCommands", description = "list of mini-game commands")
 public class AppleTheftController {
-    static Garden garden = new Garden();
+     Garden garden;
 
     @RequestMapping(method = RequestMethod.GET, value = "/string")
     public String drawMap() {
@@ -19,6 +19,7 @@ public class AppleTheftController {
 
     @RequestMapping(method = RequestMethod.GET, value =  "/array")
     public int[][] array() {
+        garden = new Garden();
         return garden.getMap();
     }
 
