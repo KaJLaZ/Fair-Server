@@ -7,14 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.List;
+
 public class LobbyController {
     @RequestMapping(method = RequestMethod.GET, value = "/getGame")
     public Game getGame(@ApiIgnore MapDb base) {
-        Object[] object = Utilities.getAllBeanConcClass(Game.class);
+        List games = Utilities.getAllBeanConcClass(Game.class);
 
         int order = (int) base.get(Integer.class, "gameCounter");
         base.replace(Integer.class, "gameCounter", order + 1);
 
-        return (Game)object[order];
+        return (Game)games.get(order);
     }
 }
