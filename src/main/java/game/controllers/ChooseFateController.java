@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -20,14 +21,9 @@ public class ChooseFateController {
     History history;
     @RequestMapping(method = RequestMethod.GET, value = "/getLigation")
         public Litigation getLigation() {
-        Object[] allHistories = Utilities.getAllBeanConcClass(History.class);
+        List allHistories = Utilities.getAllBeanConcClass(History.class);
 
-        Random random = new Random();
-        int boxNumber = random.nextInt(allHistories.length);
-
-        history = (History)allHistories[boxNumber];
-
-        return history.getLitigation();
+        return ((History)Utilities.getRandomObjectOfList(allHistories)).getLitigation();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/setSequence")

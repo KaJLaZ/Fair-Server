@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -17,12 +19,9 @@ import java.util.Random;
 public class DrawRunsController {
     @RequestMapping(method = RequestMethod.GET, value = "/getBox")
     public Box getBox() {
-        Object[] allBoxes = Utilities.getAllBeanConcClass(Box.class);
+        List allBoxes = Utilities.getAllBeanConcClass(Box.class);
 
-        Random random = new Random();
-        int boxNumber = random.nextInt(allBoxes.length);
-
-        return (Box)allBoxes[boxNumber];
+        return (Box)Utilities.getRandomObjectOfList(allBoxes);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/issueSalary")
