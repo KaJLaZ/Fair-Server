@@ -23,7 +23,9 @@ public class ChooseFateController {
         public Litigation getLigation() {
         List allHistories = Utilities.getAllBeanConcClass(History.class);
 
-        return ((History)Utilities.getRandomObjectOfList(allHistories)).getLitigation();
+        history = ((History)Utilities.getRandomObjectOfList(allHistories));
+
+        return history.getLitigation();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/setSequence")

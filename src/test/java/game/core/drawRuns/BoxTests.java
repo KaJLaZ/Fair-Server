@@ -63,34 +63,4 @@ public class BoxTests {
 
             Assertions.assertEquals(defaultSymbols, box.getCorrectSymbols());
         }
-
-        @Nested
-        class inflictedSymbol {
-            @Test
-            public void getDefaultState(){
-                Assertions.assertArrayEquals(Symbol.defaultSymbol.getAppearance(), defaultBox.getInflictedSymbol().getAppearance());
-            }
-
-            @Test
-            public void setNewValue(){
-                Symbol expected = new Symbol(new boolean[][]{ {true, true, false, true},
-                                                              {false, true, false, true},
-                                                              {false, false, true, true},
-                                                              {false, false, true, true}
-                });
-
-                defaultBox.setInflictedSymbol(expected);
-
-
-                Assertions.assertEquals(expected, defaultBox.getInflictedSymbol());
-            }
-            @Test
-            public void setNull(){
-                Assertions.assertThrows(NullPointerException.class, ()->{
-                    defaultBox.setInflictedSymbol(null);
-                });
-            }
-        }
-
-
 }
