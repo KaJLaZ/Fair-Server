@@ -10,7 +10,8 @@ public class Game {
     }
 
     public enum Games{
-        APPLE_THEFT(1), CHOOSE_FATE(2), DRAW_RUNS(3), DRINKERS(4), SEQUENCE(5);
+        APPLE_THEFT(0), CHOOSE_FATE(1), DRAW_RUNS(2), DRINKERS(3),
+        SEQUENCE(4);
 
         private int numberOfGame;
 
@@ -29,7 +30,9 @@ public class Game {
         return game;
     }
 
-    public Game(@NonNull String description, @NonNull Games game) {
+    public static final int AMOUNT_BOX_FOR_ONE_GAME = 1;
+
+    public Game(@NonNull String description,@NonNull Games game) {
         this.description = description;
         this.game = game;
     }

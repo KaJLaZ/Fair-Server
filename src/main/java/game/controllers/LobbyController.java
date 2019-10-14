@@ -1,6 +1,6 @@
 package game.controllers;
 
-import game.context.MapDb;
+import game.core.MapDb;
 import game.core.lobby.Game;
 import game.utility.Utilities;
 import io.swagger.annotations.Api;
@@ -14,8 +14,9 @@ import java.util.List;
 @RequestMapping("/gameCommands")
 @Api(value = "gameCommands", description = "list of mini-game commands")
 public class LobbyController {
+    MapDb base = new MapDb();
     @RequestMapping(method = RequestMethod.GET, value = "/getGame")
-    public Game getGame(@ApiIgnore MapDb base) {
+    public Game getGame() {
         List games = Utilities.getAllBeanConcClass(Game.class);
 
         int order = (int) base.get(Integer.class, "gameCounter");

@@ -11,7 +11,6 @@ import java.util.Random;
 
 public class Utilities {
     public static List getAllBeanConcClass(Class beanClass){
-
         ApplicationContext context = new AnnotationConfigApplicationContext("game.context");
         String[] beanNames = context.getBeanNamesForType(beanClass);
         List allBeans = new ArrayList();

@@ -15,24 +15,12 @@ public class Box {
         return correctSymbols;
     }
 
-
-    private Symbol inflictedSymbol;
-
-    public Symbol getInflictedSymbol() {
-        return inflictedSymbol;
-    }
-
-    public void setInflictedSymbol(@NonNull Symbol inflictedSymbol) {
-        this.inflictedSymbol = inflictedSymbol;
-    }
-
-    public Box(String nameGoods,@NonNull Symbol[] correctSymbols) {
+    public Box(@NonNull String nameGoods,@NonNull Symbol[] correctSymbols) {
         if(isCorrectSymbolsEmpty(correctSymbols))
             throw new IllegalArgumentException("correct Symbols are Empty");
 
         this.nameGoods = nameGoods;
         this.correctSymbols = correctSymbols;
-        this.inflictedSymbol = Symbol.defaultSymbol;
     }
 
     private boolean isCorrectSymbolsEmpty(Symbol[] correctSymbols){

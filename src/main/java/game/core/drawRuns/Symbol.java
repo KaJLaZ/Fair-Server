@@ -1,8 +1,12 @@
 package game.core.drawRuns;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
+import java.util.ArrayList;
 @EqualsAndHashCode
 public class Symbol {
     public static final int AMOUNT_COLUMNS = 4;
@@ -26,4 +30,15 @@ public class Symbol {
         this.appearance = appearance;
     }
 
+    public Symbol() { }
+
+    public static boolean isSymbolCorrect(Symbol symbol, Symbol[] correctSymbols){
+
+        for(Symbol i : correctSymbols){
+
+            if(i.equals(symbol))
+                return true;
+        }
+        return false;
+    }
 }

@@ -1,7 +1,6 @@
 package game.controllers;
 
-
-import game.context.MapDb;
+import game.core.MapDb;
 import game.core.chooseFate.History;
 import game.core.chooseFate.Litigation;
 import game.utility.Utilities;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
-
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/gameCommands")

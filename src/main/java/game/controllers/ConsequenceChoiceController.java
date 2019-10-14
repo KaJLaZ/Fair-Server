@@ -1,6 +1,6 @@
 package game.controllers;
 
-import game.context.MapDb;
+import game.core.MapDb;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
