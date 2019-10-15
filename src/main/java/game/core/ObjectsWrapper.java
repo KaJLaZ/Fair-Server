@@ -1,4 +1,4 @@
-package game.core.chooseFate;
+package game.core;
 
 import java.util.List;
 

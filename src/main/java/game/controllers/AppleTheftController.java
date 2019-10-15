@@ -54,6 +54,10 @@ public class AppleTheftController extends Controller{
 
     @RequestMapping(method = RequestMethod.GET, value = "/win")
     public boolean win() {
+
+        if(garden.isGameEnded())
+            mapBase.replace(Boolean.class, "isStolenApples", garden.isWon());
+
         return garden.isWon();
     }
 }

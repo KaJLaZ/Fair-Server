@@ -45,6 +45,7 @@ public class MapDb {
         Map<String, Boolean> booleanMap = new HashMap<>();
 
         booleanMap.put("isHasMoney", false);
+        booleanMap.put("isStolenApples", false);
 
         return booleanMap;
     }

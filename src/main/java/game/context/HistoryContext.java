@@ -1,9 +1,13 @@
 package game.context;
 
+import game.core.ObjectsWrapper;
 import game.core.chooseFate.History;
 import game.core.chooseFate.Litigation;
+import game.core.drawRuns.Symbol;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 @Configuration
 public class HistoryContext {

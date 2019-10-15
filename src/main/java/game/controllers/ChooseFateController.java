@@ -34,4 +34,9 @@ public class ChooseFateController extends Controller{
         else
             mapBase.replace(String.class,"consequence", history.getNegSequence());
     }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/hasApple")
+    public boolean hasApple() {
+        return (boolean)mapBase.get(Boolean.class, "isStolenApples");
+    }
 }

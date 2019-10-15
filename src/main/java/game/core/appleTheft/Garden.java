@@ -125,7 +125,9 @@ public class Garden {
                 if (!dogAsleep) {
                     gameEnded = true;
                     won = true;
+
                 }
+
             default:
                 break;
         }
