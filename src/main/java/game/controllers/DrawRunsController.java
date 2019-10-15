@@ -15,9 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/gameCommands")
 @Api(value = "gameCommands", description = "list of mini-game commands")
-public class DrawRunsController {
+public class DrawRunsController extends Controller{
     @RequestMapping(method = RequestMethod.GET, value = "/getNameGoods")
-    public String getNameGoods(@ApiIgnore MapDb mapBase) {
+    public String getNameGoods() {
         List allBoxes = Utilities.getAllBeanConcClass(Box.class);
         Box box = (Box) Utilities.getRandomObjectOfList(allBoxes);
         int amountSentBox = (Integer) mapBase.get(Integer.class, "sentBoxCounter");
@@ -28,7 +28,7 @@ public class DrawRunsController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/checkSymbol")
-    public void checkSymbol(@ApiIgnore MapDb mapBase, String[] appearance) {
+    public void checkSymbol(String[] appearance) {
         Box box = (Box) mapBase.get(Box.class, "sentBox");
 
         Symbol symbol = new Symbol(transformAppearance(appearance));

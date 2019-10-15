@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/gameCommands")
 @Api(value = "gameCommands", description = "list of mini-game commands")
-public class AppleTheftController {
+public class AppleTheftController extends Controller{
      Garden garden;
 
     @RequestMapping(method = RequestMethod.GET, value = "/string")

@@ -1,8 +1,6 @@
 package game.core.chooseFate;
 
 public class PointOfHit {
-
-
     private double x;
     private double y;
 

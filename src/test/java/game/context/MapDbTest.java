@@ -9,11 +9,11 @@ public class MapDbTest {
     MapDb defaultBase;
     @BeforeEach
     public void initializeMapDb(){
-        defaultBase = new MapDb();
+        defaultBase = MapDb.getMapDB();
     }
     @Test
     public void createMapDb(){
-        MapDb base = new MapDb();
+        MapDb base = MapDb.getMapDB();
     }
     @Test
     public void MabDbMustBeFilled(){

@@ -10,9 +10,9 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 @RequestMapping("/gameCommands")
 @Api(value = "gameCommands", description = "list of mini-game commands")
-public class ConsequenceChoiceController {
+public class ConsequenceChoiceController extends Controller{
     @RequestMapping(method = RequestMethod.GET, value = "/getConsequence")
-    public String getConsequence(@ApiIgnore MapDb mapBase) {
+    public String getConsequence() {
         return (String) mapBase.get(String.class, "consequence");
     }
 }

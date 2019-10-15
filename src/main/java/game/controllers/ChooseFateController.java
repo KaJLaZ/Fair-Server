@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/gameCommands")
 @Api(value = "gameCommands", description = "list of mini-game commands")
-public class ChooseFateController {
+public class ChooseFateController extends Controller{
     History history;
     @RequestMapping(method = RequestMethod.GET, value = "/getLigation")
         public Litigation getLigation() {
@@ -26,7 +26,7 @@ public class ChooseFateController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/setSequence")
-    public void setSequence(@ApiIgnore MapDb mapBase, boolean choice)
+    public void setSequence(boolean choice)
     {
         if(choice)
             mapBase.replace(String.class,"consequence", history.getPosSequence());

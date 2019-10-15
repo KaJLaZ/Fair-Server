@@ -8,9 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapDb {
+    private static MapDb mapDb;
+
     private Map<Type, Map> base;
 
-    public MapDb() {
+    private MapDb() {
         base = new HashMap<>();
 
         Map stringMap = getStringMap();
@@ -22,6 +24,13 @@ public class MapDb {
         base.put(Boolean.class, booleanMap);
         base.put(Integer.class, integerMap);
         base.put(Box.class, boxMap);
+    }
+
+    public static MapDb getMapDB(){
+        if(mapDb == null)
+            mapDb = new MapDb();
+
+        return mapDb;
     }
 
     private Map<String, String> getStringMap(){
