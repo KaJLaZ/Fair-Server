@@ -28,6 +28,7 @@ public class ChooseFateController extends Controller{
     @RequestMapping(method = RequestMethod.POST, value = "/setSequence")
     public void setSequence(boolean choice)
     {
+        System.out.println("Worked");
         if(choice)
             mapBase.replace(String.class,"consequence", history.getPosSequence());
 
