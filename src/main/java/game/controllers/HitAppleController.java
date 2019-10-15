@@ -1,6 +1,5 @@
 package game.controllers;
 
-import game.core.chooseFate.PointOfHit;
 import game.core.lobby.Game;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
