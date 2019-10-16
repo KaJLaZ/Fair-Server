@@ -26,9 +26,9 @@ public class Garden {
     public Garden() {
         map = new int[10][15];
         wallBuild();
-        int exitplace = 1 + random.nextInt(map[0].length - 1);
-        map[map.length - 1][exitplace] = EXIT;
-        map[map.length - 2][exitplace] = EMPTY;
+        int exitPlace = 1 + random.nextInt(map[0].length - 2);
+        map[map.length - 1][exitPlace] = EXIT;
+        map[map.length - 2][exitPlace] = EMPTY;
         setInRandomPlace(TREE);
         setInRandomPlace(HERO);
         setInRandomPlace(DOG);
