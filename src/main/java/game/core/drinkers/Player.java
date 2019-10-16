@@ -29,33 +29,25 @@ public class Player {
         return alcohol;
     }
 
-    public String showIntoxication(){
-        return "Intoxication :"+alcohol;
-    }
-
     public boolean isAbleToSeePrediction() {
         return isAbleToSeePrediction;
     }
 
-    public void showPlayer() {
-        System.out.println("Player{" + "alcohol=" + alcohol + ", name='" + name + '\'' + '}');
+    public void setAlcohol(int alcohol) {
+        this.alcohol = alcohol;
     }
 
     public void pass(){
-        passed=true;
+
     }
 
     public void drink(){
-        if (!passed) {
             this.alcohol += 40+random.nextInt(alcoholPower);
             alcoholPower+=40;
-        }else{
-            System.out.println("You have passed");
-        }
     }
 
     public void npcDrink(){
-        if (getAlcohol()<940){
+        if (getAlcohol()<850){
             drink();
         }
     }

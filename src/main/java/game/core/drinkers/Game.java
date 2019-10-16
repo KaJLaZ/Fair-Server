@@ -23,25 +23,28 @@ public class Game {
     }
 
     public String chooseWinner(){
+        String result="";
        if (player.getAlcohol()>1000){
            player.becomeUnableToSeePrediction();
            if (npc.getAlcohol()>1000){
-               return "Нічия";
+               result= "Нічия";
            }else if (npc.getAlcohol()<1000){
-               return "Ви програли";
+               result= "Ви програли";
            }
        }else if (player.getAlcohol()<=1000){
            player.becomeAbleToSeePrediction();
            if (npc.getAlcohol()>1000){
-               return "Ви виграли";
+               result= "Ви виграли";
            }
            if (player.getAlcohol()>npc.getAlcohol()){
-               return "Ви виграли";
+               result= "Ви виграли";
            }else if (player.getAlcohol()<npc.getAlcohol()&&npc.getAlcohol()<1000){
-               return "Ви програли";
+               result= "Ви програли";
            }
        }
-        return null;
+        player.setAlcohol(0);
+        npc.setAlcohol(0);
+        return result;
     }
 
     public boolean getWinner(){
