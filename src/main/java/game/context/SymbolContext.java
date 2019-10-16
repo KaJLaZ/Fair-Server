@@ -5,6 +5,7 @@ import game.core.drawRuns.Symbol;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -67,5 +68,10 @@ public class SymbolContext {
         };
 
         return new Symbol(fragile);
+    }
+
+    @Bean
+    public ObjectsWrapper<Symbol> symbols(Symbol[] symbols){
+        return new ObjectsWrapper<>(symbols);
     }
 }

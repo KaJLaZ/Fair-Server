@@ -1,5 +1,6 @@
 package game.core.drawRuns;
 
+import game.core.ObjectsWrapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -12,12 +13,12 @@ public class BoxTests {
     Box defaultBox;
 
     Symbol defaultSymbol;
-    Symbol[] defaultSymbols;
+    ObjectsWrapper defaultSymbols;
 
     @BeforeEach
     public void defaultBox(){
         defaultSymbol = Mockito.mock(Symbol.class);
-        defaultSymbols = new Symbol[]{defaultSymbol};
+        defaultSymbols = new ObjectsWrapper(defaultSymbol);
 
         defaultBox = new Box("elephant", defaultSymbols);
     }
@@ -34,9 +35,9 @@ public class BoxTests {
 
     @Test
     public void notSetEmptyCorrectSymbols(){
-        Symbol[] symbols = new Symbol[3];
+        ObjectsWrapper<Symbol> symbols = new ObjectsWrapper<>();
 
-        System.out.println(symbols.length);
+        System.out.println(symbols.getObjects().length);
 
         Assertions.assertThrows(IllegalArgumentException.class, ()->{
             Box box = new Box("rose", symbols);

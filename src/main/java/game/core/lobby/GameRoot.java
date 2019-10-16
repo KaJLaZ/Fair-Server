@@ -2,7 +2,7 @@ package game.core.lobby;
 
 import lombok.NonNull;
 
-public class Game {
+public class GameRoot {
     private String description;
 
     public String getDescription() {
@@ -11,7 +11,7 @@ public class Game {
 
     public enum Games{
         APPLE_THEFT(0), CHOOSE_FATE(1), DRAW_RUNS(2), DRINKERS(3),
-        SEQUENCE(4);
+        SEQUENCE(4), END_GAME(5);
 
         private int numberOfGame;
 
@@ -36,7 +36,7 @@ public class Game {
     public static final double CENTER_OF_SQUARE_Y = 200;
     public static final double LENGTH_OF_HALF_SIDE = 45;
 
-    public Game(@NonNull String description,@NonNull Games game) {
+    public GameRoot(@NonNull String description, @NonNull Games game) {
         this.description = description;
         this.game = game;
     }

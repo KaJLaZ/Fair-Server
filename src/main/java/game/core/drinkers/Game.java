@@ -24,6 +24,7 @@ public class Game {
 
     public String chooseWinner(){
        if (player.getAlcohol()>1000){
+           player.becomeUnableToSeePrediction();
            if (npc.getAlcohol()>1000){
                return "Draw";
            }else if (npc.getAlcohol()<1000){

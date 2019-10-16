@@ -3,13 +3,13 @@ package game.core;
 import java.util.List;
 
 public class ObjectsWrapper<T> {
-    private final List objects;
+    private T[] objects;
 
-    public List<T> getObjects() {
+    public T[] getObjects() {
         return objects;
     }
 
-    public ObjectsWrapper(List<T> objects) {
+    public ObjectsWrapper(T... objects) {
         this.objects = objects;
     }
 }

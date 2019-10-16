@@ -1,6 +1,6 @@
 package game.context;
 
-import game.core.MapDb;
+import game.core.dataBase.MapDb;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

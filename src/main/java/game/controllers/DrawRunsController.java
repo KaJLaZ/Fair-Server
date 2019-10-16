@@ -1,14 +1,12 @@
 package game.controllers;
 
-import game.core.MapDb;
 import game.core.drawRuns.*;
-import game.core.lobby.Game;
+import game.core.lobby.GameRoot;
 import game.utility.Utilities;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -18,8 +16,8 @@ import java.util.List;
 public class DrawRunsController extends Controller{
     @RequestMapping(method = RequestMethod.GET, value = "/getNameGoods")
     public String getNameGoods() {
-        List allBoxes = Utilities.getAllBeanConcClass(Box.class);
-        Box box = (Box) Utilities.getRandomObjectOfList(allBoxes);
+        Object[] allBoxes = Utilities.getAllBeanConcClass("boxes").getObjects();
+        Box box = (Box) Utilities.getRandomObjectOfArray(allBoxes);
         int amountSentBox = (Integer) mapBase.get(Integer.class, "sentBoxCounter");
 
         mapBase.replace(Integer.class, "sentBoxCounter", amountSentBox + 1);
@@ -38,9 +36,9 @@ public class DrawRunsController extends Controller{
             mapBase.replace(Integer.class, "correctDrawSymbols", correctDrawSymbols + 1);
         }
 
-        if ((Integer) mapBase.get(Integer.class, "sentBoxCounter") == Game.AMOUNT_BOX_FOR_ONE_GAME) {
+        if ((Integer) mapBase.get(Integer.class, "correctDrawSymbols") == GameRoot.AMOUNT_BOX_FOR_ONE_GAME) {
             mapBase.replace(Boolean.class, "isHasMoney", true);
-            mapBase.replace(Integer.class, "sentBoxCounter", 0);
+            mapBase.replace(Integer.class, "correctDrawSymbols", 0);
         }
 
     }

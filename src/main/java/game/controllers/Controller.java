@@ -1,6 +1,6 @@
 package game.controllers;
 
-import game.core.MapDb;
+import game.core.dataBase.MapDb;
 
 public abstract class Controller {
     public static final MapDb mapBase = MapDb.getMapDB();

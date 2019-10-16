@@ -1,5 +1,6 @@
-package game.core;
+package game.core.dataBase;
 
+import game.core.ObjectsWrapper;
 import game.core.drawRuns.Box;
 import game.core.drawRuns.Symbol;
 import lombok.NonNull;
@@ -62,7 +63,7 @@ public class MapDb {
     private Map<String, Box> getBoxMap(){
         Map<String, Box> boxMap = new HashMap<>();
 
-        boxMap.put("sentBox", new Box("", new Symbol[]{Symbol.defaultSymbol}));
+        boxMap.put("sentBox", new Box("", new ObjectsWrapper<>(Symbol.defaultSymbol)));
 
         return boxMap;
     }

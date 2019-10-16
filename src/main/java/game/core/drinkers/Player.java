@@ -6,7 +6,7 @@ public class Player {
     public boolean passed;
     private int alcohol;
     private String name;
-    private boolean isAbleToSeePrediction=false;
+    private boolean isAbleToSeePrediction=true;
 
 
     static Random random=new Random();
@@ -18,7 +18,11 @@ public class Player {
     }
 
     public void becomeAbleToSeePrediction() {
-        isAbleToSeePrediction=!isAbleToSeePrediction;
+        isAbleToSeePrediction=true;
+    }
+
+    public void becomeUnableToSeePrediction(){
+        isAbleToSeePrediction=false;
     }
 
     public int getAlcohol() {

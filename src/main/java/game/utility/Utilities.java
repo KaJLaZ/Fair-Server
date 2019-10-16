@@ -1,29 +1,22 @@
 package game.utility;
 
-import game.core.chooseFate.History;
+import game.core.ObjectsWrapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
 public class Utilities {
-    public static List getAllBeanConcClass(Class beanClass){
+    public static ObjectsWrapper getAllBeanConcClass(String nameBean){
         ApplicationContext context = new AnnotationConfigApplicationContext("game.context");
-        String[] beanNames = context.getBeanNamesForType(beanClass);
-        List allBeans = new ArrayList();
 
-        for (int i = 0; i < beanNames.length; i++)
-            allBeans.add(context.getBean(beanNames[i]));
-
-        return allBeans;
+        return (ObjectsWrapper) context.getBean(nameBean);
     }
-    public static <T> T getRandomObjectOfList(List<T> list){
+    public static Object getRandomObjectOfArray(Object[] array){
         Random random = new Random();
-        int boxNumber = random.nextInt(list.size());
+        int number = random.nextInt(array.length);
 
-        return list.get(boxNumber);
+        return array[number];
     }
 }

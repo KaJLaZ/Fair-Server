@@ -1,5 +1,6 @@
 package game.core.drawRuns;
 
+import game.core.ObjectsWrapper;
 import lombok.NonNull;
 
 public class Box {
@@ -9,14 +10,14 @@ public class Box {
         return nameGoods;
     }
 
-    private Symbol[] correctSymbols;
+    private ObjectsWrapper<Symbol> correctSymbols;
 
     public Symbol[] getCorrectSymbols() {
-        return correctSymbols;
+        return correctSymbols.getObjects();
     }
 
-    public Box(@NonNull String nameGoods,@NonNull Symbol[] correctSymbols) {
-        if(isCorrectSymbolsEmpty(correctSymbols))
+    public Box(@NonNull String nameGoods,@NonNull ObjectsWrapper<Symbol> correctSymbols) {
+        if(isCorrectSymbolsEmpty(correctSymbols.getObjects()))
             throw new IllegalArgumentException("correct Symbols are Empty");
 
         this.nameGoods = nameGoods;

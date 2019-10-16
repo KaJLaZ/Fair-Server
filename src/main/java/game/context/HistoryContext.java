@@ -12,7 +12,7 @@ import java.util.List;
 @Configuration
 public class HistoryContext {
     @Bean
-    public History Painter(){
+    public History Painter() {
         String personDescription = "Спадкоємець сім'ї Штайманн, перший свого імені, Кернал Штайманн. Студент\n" +
                 " Окреанського університет мистецтв, один з головних ініціаторів зимової виставки картин в\n" +
                 " їхньому родинному замку. Автор 24 картин з цієї самої виставки. Частий гість таверни, в чому\n" +
@@ -56,8 +56,9 @@ public class HistoryContext {
 
         return new History(litigation, posSequence, negSequence);
     }
+
     @Bean
-    public History Military(){
+    public History Military() {
         String personDescription = "Голова однієї з 3 родів лордів цього краю Камаель Саргас. Ветерат війни королівст,\n" +
                 "герой Парузької бойні і голова свого роду.";
 
@@ -100,8 +101,9 @@ public class HistoryContext {
 
         return new History(litigation, posSequence, negSequence);
     }
+
     @Bean
-    public History Politician(){
+    public History Politician() {
         String personDescription = "Зі слів закутого в колодки без іменний іноземець\n";
 
         String faultDescription = "Посмів нагрубити дружині нашого всіма поважаємого шерифа. Любий мужчина почувший \n" +
@@ -110,7 +112,7 @@ public class HistoryContext {
 
         String descPosChoice = "Люди подивіться на нього таких здорованів в нащих краях ніколи не водилось. Тоді це що \n" +
                 "виходить ? Спочатку іноземці чіпляються до наших жінок, забирають у нас роботу, а що потім ? Виженуть\n" +
-                "з власної оселі. Та не буде цього поки я стою твердо на цій землі" ;
+                "з власної оселі. Та не буде цього поки я стою твердо на цій землі";
 
         String descNegChoice = "Неважко було в цій толпі побачити жінку шерифа з надзвичайно обуреним лицем жадаючим\n" +
                 "відплати, але її чоловіка ніде не було видно. І подивившис людину в колодках ви помітили 2 незвичні речі\n" +
@@ -132,7 +134,7 @@ public class HistoryContext {
                 "ще раз зміна місця, зазвичай ваші сни йдуть плано але це більше схоже на кошмар, палаюче місто\n" +
                 "далекої країни де корлівські воєнні творяьб все такі злодіянні якими навіть пропагандисти вас нелякали\n" +
                 "на передодні минулої війни між королівствами. Ще один перехід і ви бачите лише попелище \n" +
-                "замість міста в вогні." ;
+                "замість міста в вогні.";
 
         String negSequence = "Ясний день, перед вами ціле місто з висоти пташиного льоту. Але немов очима гостозорого \n" +
                 "птаха ви стані побачити найдрібніші деталі такі як написи на муленьких затишних вивісках на вулицях\n" +
@@ -143,5 +145,10 @@ public class HistoryContext {
                 "для жителів цієї країни.";
 
         return new History(litigation, posSequence, negSequence);
+    }
+
+    @Bean
+    public ObjectsWrapper<History> histories(History[] histories){
+        return new ObjectsWrapper<>(histories);
     }
 }
