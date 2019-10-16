@@ -26,19 +26,19 @@ public class Game {
        if (player.getAlcohol()>1000){
            player.becomeUnableToSeePrediction();
            if (npc.getAlcohol()>1000){
-               return "Draw";
+               return "Нічия";
            }else if (npc.getAlcohol()<1000){
-               return "You have lost";
+               return "Ви програли";
            }
        }else if (player.getAlcohol()<=1000){
            player.becomeAbleToSeePrediction();
            if (npc.getAlcohol()>1000){
-               return "You have won";
+               return "Ви виграли";
            }
            if (player.getAlcohol()>npc.getAlcohol()){
-               return "You have won";
+               return "Ви виграли";
            }else if (player.getAlcohol()<npc.getAlcohol()&&npc.getAlcohol()<1000){
-               return "You have lost";
+               return "Ви програли";
            }
        }
         return null;
