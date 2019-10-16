@@ -32,9 +32,7 @@ public class GameRoot {
 
     public static final int AMOUNT_BOX_FOR_ONE_GAME = 3;
 
-    public static final double CENTER_OF_SQUARE_X = 550;
-    public static final double CENTER_OF_SQUARE_Y = 200;
-    public static final double LENGTH_OF_HALF_SIDE = 45;
+
 
     public GameRoot(@NonNull String description, @NonNull Games game) {
         this.description = description;

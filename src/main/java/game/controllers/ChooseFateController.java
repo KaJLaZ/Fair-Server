@@ -1,6 +1,7 @@
 package game.controllers;
 
 import game.core.chooseFate.History;
+import game.core.chooseFate.HitApple;
 import game.core.chooseFate.Litigation;
 import game.core.lobby.GameRoot;
 import game.utility.Utilities;
@@ -16,7 +17,7 @@ import java.util.Random;
 @RequestMapping("/gameCommands")
 @Api(value = "gameCommands", description = "list of mini-game commands")
 public class ChooseFateController extends Controller{
-    History history;
+    private History history;
     @RequestMapping(method = RequestMethod.GET, value = "/getLigation")
         public Litigation getLigation() {
         Object[] allHistories = Utilities.getAllBeanConcClass("histories").getObjects();
@@ -42,23 +43,16 @@ public class ChooseFateController extends Controller{
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/checkHit")
-    public boolean checkHit(double x, double y) {
+    public void checkHit(double x, double y) {
 
-        boolean isBelongByX = x >= (GameRoot.CENTER_OF_SQUARE_X - GameRoot.LENGTH_OF_HALF_SIDE)
-                &&( x <= GameRoot.CENTER_OF_SQUARE_X + GameRoot.LENGTH_OF_HALF_SIDE);
-        boolean isBelongByY = (y >= (GameRoot.CENTER_OF_SQUARE_Y - GameRoot.LENGTH_OF_HALF_SIDE)
-                && y <= GameRoot.CENTER_OF_SQUARE_Y + GameRoot.LENGTH_OF_HALF_SIDE );
-
-        if(isBelongByX && isBelongByY){
+        if(HitApple.isHited(x, y)){
             mapBase.replace(String.class, "consequence", history.getPosSequence());
-            return true;
         } else{
             mapBase.replace(String.class, "consequence", history.getNegSequence());
-            return false;
         }
     }
 
-    public boolean isPrisonerDonated(){
+    private boolean isPrisonerDonated(){
           return new Random().nextBoolean();
     }
 }
