@@ -16,6 +16,10 @@ public class Player {
         this.alcohol = 0;
     }
 
+    public void setPassed(boolean passed) {
+        this.passed = passed;
+    }
+
     public void becomeAbleToSeePrediction() {
         isAbleToSeePrediction = true;
     }
@@ -50,8 +54,6 @@ public class Player {
     }
 
     public void npcDrink() {
-        if (getAlcohol() < 850) {
             drink();
-        }
     }
 }
