@@ -3,142 +3,71 @@ package game.core.dataBase;
 import game.core.ObjectsWrapper;
 import game.core.drawRuns.Box;
 import game.core.drawRuns.Symbol;
+import game.core.lobby.GameRoot;
+import game.utility.Utilities;
 import lombok.NonNull;
+
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MapDb {
-    private static MapDb mapDb;
+public class MapDb<T extends GameState> {
+    private static MapDb mapDBB;
 
-    private Map<Type, Map> base;
+    private Map<Type, T> base;
 
     private MapDb() {
         base = new HashMap<>();
 
-        Map stringMap = getStringMap();
-        Map booleanMap = getBooleanMap();
-        Map integerMap = getIntegerMap();
-        Map boxMap = getBoxMap();
+        GameState<Box> boxState = new SentBoxState(new Box("", new ObjectsWrapper<>(Symbol.defaultSymbol)));
+        GameState<ObjectsWrapper<GameRoot>> currentRootState = new CurrentRootState(Utilities.getBean("firstDayFirstRoot"));
+        GameState<String> consequenceState = new ConsequenceState("");
 
-        base.put(String.class, stringMap);
-        base.put(Boolean.class, booleanMap);
-        base.put(Integer.class, integerMap);
-        base.put(Box.class, boxMap);
+        GameState<Boolean> isHasMoneyState = new HasMoneyState(false);
+        GameState<Boolean> isStolenApples = new IsStolenApplesState(false);
+        GameState<Boolean> isDrunkState = new IsDrunkState(true);
+
+        GameState<Integer> gameCounterState = new GameCounterState(0);
+        GameState<Integer> sentBoxCounter = new SentBoxCounterState(0);
+        GameState<Integer> corDrawSymbState = new CorrectDrawSymbolsState(0);
+        GameState<Integer> dayCounterState = new DayCounterState(1);
+
+        base.put(SentBoxState.class, (T) boxState);
+        base.put(CurrentRootState.class, (T) currentRootState);
+        base.put(ConsequenceState.class, (T) consequenceState);
+
+        base.put(HasMoneyState.class, (T) isHasMoneyState);
+        base.put(IsStolenApplesState.class, (T) isStolenApples);
+        base.put(IsDrunkState.class, (T) isDrunkState);
+
+        base.put(GameCounterState.class, (T) gameCounterState);
+        base.put(SentBoxCounterState.class, (T) sentBoxCounter);
+        base.put(CorrectDrawSymbolsState.class, (T) corDrawSymbState);
+        base.put(DayCounterState.class, (T) dayCounterState);
     }
 
-    public static MapDb getMapDB(){
-        if(mapDb == null)
-            mapDb = new MapDb();
+    public static MapDb getMapDb() {
+        if (mapDBB == null)
+            mapDBB = new MapDb();
 
-        return mapDb;
+        return mapDBB;
     }
 
-    private Map<String, String> getStringMap(){
-        Map<String, String> stringMap = new HashMap<>();
+    public T get(@NonNull Type type) {
+        T value = base.get(type);
 
-        stringMap.put("consequence", "");
-
-        return stringMap;
-    }
-
-    private Map<String, Boolean> getBooleanMap(){
-        Map<String, Boolean> booleanMap = new HashMap<>();
-
-        booleanMap.put("isHasMoney", false);
-        booleanMap.put("isStolenApples", false);
-
-        return booleanMap;
-    }
-
-    private Map<String, Integer> getIntegerMap(){
-        Map<String, Integer> integerMap = new HashMap<>();
-
-        integerMap.put("gameCounter", 0);
-        integerMap.put("sentBoxCounter", 0);
-        integerMap.put("correctDrawSymbols", 0);
-        return integerMap;
-    }
-
-    private Map<String, Box> getBoxMap(){
-        Map<String, Box> boxMap = new HashMap<>();
-
-        boxMap.put("sentBox", new Box("", new ObjectsWrapper<>(Symbol.defaultSymbol)));
-
-        return boxMap;
-    }
-
-    public Object get(@NonNull Type valueType, @NonNull String key){
-        Map map = base.get(valueType);
-
-        if(map == null)
-            throw new IllegalArgumentException("didn't find element");
-
-        Object value = map.get(key);
-
-        if(value == null)
-            throw new IllegalArgumentException("didn't find element");
+        if (value == null)
+            throw new NullPointerException();
 
         return value;
     }
 
-    public void replace(@NonNull Type valueType, @NonNull String key, @NonNull String value){
-        if(valueType != value.getClass())
-            throw new IllegalArgumentException("incorrect type of value");
+    public void replace(@NonNull Type type, @NonNull GameState gameState) {
 
-        Map map = base.get(valueType);
+        GameState value = base.replace(type, (T) gameState);
 
-        if(map == null)
-            throw new IllegalArgumentException("didn't find element");
-
-        if(!map.containsKey(key))
-            throw new IllegalArgumentException("didn't find element");
-
-        map.replace(key, value);
+        if (value == null)
+            throw new NullPointerException();
     }
 
-    public void replace(@NonNull Type valueType, @NonNull String key, @NonNull Boolean value){
-        if(valueType != value.getClass())
-            throw new IllegalArgumentException("incorrect type of value");
-
-        Map map = base.get(valueType);
-
-        if(map == null)
-            throw new IllegalArgumentException("didn't find element");
-
-        if(!map.containsKey(key))
-            throw new IllegalArgumentException("didn't find element");
-
-        map.replace(key, value);
-    }
-
-    public void replace(@NonNull Type valueType, @NonNull String key, @NonNull Integer value){
-        if(valueType != value.getClass())
-            throw new IllegalArgumentException("incorrect type of value");
-
-        Map map = base.get(valueType);
-
-        if(map == null)
-            throw new IllegalArgumentException("didn't find element");
-
-        if(!map.containsKey(key))
-            throw new IllegalArgumentException("didn't find element");
-
-        map.replace(key, value);
-    }
-
-    public void replace(@NonNull Type valueType, @NonNull String key, @NonNull Box value){
-        if(valueType != value.getClass())
-            throw new IllegalArgumentException("incorrect type of value");
-
-        Map map = base.get(valueType);
-
-        if(map == null)
-            throw new IllegalArgumentException("didn't find element");
-
-        if(!map.containsKey(key))
-            throw new IllegalArgumentException("didn't find element");
-
-        map.replace(key, value);
-    }
 }

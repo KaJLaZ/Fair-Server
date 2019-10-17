@@ -3,7 +3,6 @@ package game.core.drawRuns;
 import game.core.ObjectsWrapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,55 +12,56 @@ public class BoxTests {
     Box defaultBox;
 
     Symbol defaultSymbol;
-    ObjectsWrapper defaultSymbols;
+    ObjectsWrapper<Symbol> objectsWrapper;
 
     @BeforeEach
-    public void defaultBox(){
+    public void defaultBox() {
         defaultSymbol = Mockito.mock(Symbol.class);
-        defaultSymbols = new ObjectsWrapper(defaultSymbol);
+        objectsWrapper = new ObjectsWrapper<>(defaultSymbol);
 
-        defaultBox = new Box("elephant", defaultSymbols);
+        defaultBox = new Box("elephant", objectsWrapper);
     }
 
     @Test
-    public void createBox(){
+    public void createBox() {
         String nameSymbol = "Rabbit";
 
-        Box box = new Box(nameSymbol, defaultSymbols);
+        Box box = new Box(nameSymbol, objectsWrapper);
 
         Assertions.assertEquals(box.getNameGoods(), nameSymbol);
-        Assertions.assertEquals(box.getCorrectSymbols(), defaultSymbols);
+        Assertions.assertEquals(box.getCorrectSymbols(), objectsWrapper.getObjects());
     }
 
     @Test
-    public void notSetEmptyCorrectSymbols(){
+    public void notSetEmptyCorrectSymbols() {
         ObjectsWrapper<Symbol> symbols = new ObjectsWrapper<>();
 
         System.out.println(symbols.getObjects().length);
 
-        Assertions.assertThrows(IllegalArgumentException.class, ()->{
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Box box = new Box("rose", symbols);
         });
     }
 
     @Test
-    public void setNull(){
-        Assertions.assertThrows(NullPointerException.class, ()->{
+    public void setNull() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
             Box box = new Box("rose", null);
         });
     }
-        @Test
-        public void getNameGoods() {
-            String name = "desk";
-            Box box = new Box(name, defaultSymbols);
 
-            Assertions.assertEquals(name, box.getNameGoods());
-        }
+    @Test
+    public void getNameGoods() {
+        String name = "desk";
+        Box box = new Box(name, objectsWrapper);
 
-        @Test
-        public void getCorrectSymbols() {
-            Box box = new Box("honey", defaultSymbols);
+        Assertions.assertEquals(name, box.getNameGoods());
+    }
 
-            Assertions.assertEquals(defaultSymbols, box.getCorrectSymbols());
-        }
+    @Test
+    public void getCorrectSymbols() {
+        Box box = new Box("honey", objectsWrapper);
+
+        Assertions.assertEquals(objectsWrapper.getObjects(), box.getCorrectSymbols());
+    }
 }

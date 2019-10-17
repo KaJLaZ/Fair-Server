@@ -5,15 +5,12 @@ import game.core.drawRuns.Symbol;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Configuration
 public class SymbolContext {
     @Bean
     public Symbol StandardRun() {
 
-        boolean[][] standard =  {{true, true, false, false},
+        boolean[][] standard = {{true, true, false, false},
                 {true, false, true, false},
                 {true, false, true, true},
                 {true, false, false, true}
@@ -71,7 +68,7 @@ public class SymbolContext {
     }
 
     @Bean
-    public ObjectsWrapper<Symbol> symbols(Symbol[] symbols){
+    public ObjectsWrapper<Symbol> symbols(Symbol[] symbols) {
         return new ObjectsWrapper<>(symbols);
     }
 }

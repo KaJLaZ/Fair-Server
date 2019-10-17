@@ -10,32 +10,36 @@ public class LitigationTest {
     String defDescPosChoice = "defDescPosChoice";
     String defDescNegChoice = "defDescNegChoice";
     Litigation litigation;
+
     @BeforeEach
-    public void initializeLitigation(){
+    public void initializeLitigation() {
         litigation = new Litigation(personDescription, defFaultDesc, defDescPosChoice, defDescNegChoice);
     }
 
     @Test
-    public void createLitigation(){
+    public void createLitigation() {
         Litigation litigation = new Litigation("asd", "asd",
-                                                  "asd", "asd");
+                "asd", "asd");
     }
 
     @Test
-    public void getInizializedDefFaultDesc(){
+    public void getInizializedDefFaultDesc() {
         Assertions.assertEquals(defFaultDesc, litigation.getFaultDesc());
     }
+
     @Test
-    public void getInizializedDefDescPosChoice(){
+    public void getInizializedDefDescPosChoice() {
         Assertions.assertEquals(defDescPosChoice, litigation.getDescPosChoice());
     }
+
     @Test
-    public void getInizializedDefDescNegChoice(){
+    public void getInizializedDefDescNegChoice() {
         Assertions.assertEquals(defDescNegChoice, litigation.getDescNegChoice());
     }
+
     @Test
-    public void createLitigationWithNull(){
-        Assertions.assertThrows(NullPointerException.class, ()->{
+    public void createLitigationWithNull() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
             Litigation litigation = new Litigation(null, null, defDescPosChoice, defDescNegChoice);
         });
     }

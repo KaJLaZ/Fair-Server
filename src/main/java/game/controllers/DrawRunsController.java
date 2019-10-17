@@ -1,6 +1,11 @@
 package game.controllers;
 
-import game.core.drawRuns.*;
+import game.core.dataBase.CorrectDrawSymbolsState;
+import game.core.dataBase.HasMoneyState;
+import game.core.dataBase.SentBoxCounterState;
+import game.core.dataBase.SentBoxState;
+import game.core.drawRuns.Box;
+import game.core.drawRuns.Symbol;
 import game.core.lobby.GameRoot;
 import game.utility.Utilities;
 import io.swagger.annotations.Api;
@@ -8,58 +13,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/gameCommands")
 @Api(value = "gameCommands", description = "list of mini-game commands")
-public class DrawRunsController extends Controller{
+public class DrawRunsController extends Controller {
     @RequestMapping(method = RequestMethod.GET, value = "/getNameGoods")
     public String getNameGoods() {
-        Object[] allBoxes = Utilities.getAllBeanConcClass("boxes").getObjects();
+        Object[] allBoxes = Utilities.getBean("boxes").getObjects();
         Box box = (Box) Utilities.getRandomObjectOfArray(allBoxes);
-        int amountSentBox = (Integer) mapBase.get(Integer.class, "sentBoxCounter");
+        int amountSentBox = (Integer) mapBase.get(SentBoxCounterState.class).get();
 
-        mapBase.replace(Integer.class, "sentBoxCounter", amountSentBox + 1);
-        mapBase.replace(Box.class, "sentBox", box);
+        mapBase.replace(SentBoxCounterState.class, new SentBoxCounterState(amountSentBox + 1));
+        mapBase.replace(SentBoxState.class, new SentBoxState(box));
         return box.getNameGoods();
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/checkSymbol")
     public void checkSymbol(String[] appearance) {
-        Box box = (Box) mapBase.get(Box.class, "sentBox");
+        Box box = (Box) mapBase.get(SentBoxState.class).get();
 
-        Symbol symbol = new Symbol(transformAppearance(appearance));
+        Symbol symbol = new Symbol(Symbol.transformToAppearance(appearance));
 
-        if(Symbol.isSymbolCorrect(symbol, box.getCorrectSymbols())) {
-            int correctDrawSymbols = (int)mapBase.get(Integer.class, "correctDrawSymbols");
-            mapBase.replace(Integer.class, "correctDrawSymbols", correctDrawSymbols + 1);
+        if (Symbol.isSymbolCorrect(symbol, box.getCorrectSymbols())) {
+
+            int correctDrawSymbols = (int) mapBase.get(CorrectDrawSymbolsState.class).get();
+            mapBase.replace(CorrectDrawSymbolsState.class, new CorrectDrawSymbolsState(correctDrawSymbols + 1));
         }
 
-        if ((Integer) mapBase.get(Integer.class, "correctDrawSymbols") == GameRoot.AMOUNT_BOX_FOR_ONE_GAME) {
-            mapBase.replace(Boolean.class, "isHasMoney", true);
-            mapBase.replace(Integer.class, "correctDrawSymbols", 0);
+        if ((Integer) mapBase.get(SentBoxCounterState.class).get() == GameRoot.AMOUNT_BOX_FOR_ONE_GAME) {
+
+            if ((Integer) mapBase.get(CorrectDrawSymbolsState.class).get() == GameRoot.AMOUNT_BOX_FOR_ONE_GAME)
+                mapBase.replace(HasMoneyState.class, new HasMoneyState(true));
+
+            mapBase.replace(SentBoxCounterState.class, new SentBoxCounterState(0));
+            mapBase.replace(CorrectDrawSymbolsState.class, new CorrectDrawSymbolsState(0));
         }
-
-    }
-
-    private boolean[][] transformAppearance(String[] appearance) {
-        int counter = 0;
-        boolean[][] newAppearance = new boolean[Symbol.AMOUNT_ROWS][Symbol.AMOUNT_COLUMNS];
-
-        for (int i = 0; i < appearance.length; i++) {
-            appearance[i] = appearance[i].replace('"', ' ');
-            appearance[i] = appearance[i].replace('[', ' ');
-            appearance[i] = appearance[i].replace(']', ' ');
-            appearance[i] = appearance[i].trim();
-        }
-
-        for (int i = 0; i < Symbol.AMOUNT_ROWS; i++) {
-            for (int j = 0; j < Symbol.AMOUNT_COLUMNS; j++) {
-                newAppearance[i][j] = Boolean.valueOf(appearance[counter++]);
-            }
-        }
-
-        return newAppearance;
     }
 }

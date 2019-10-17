@@ -8,25 +8,30 @@ public class GameRootTest {
     String defaultDesc = "defaultDesc";
     GameRoot.Games defaultGameEnum = GameRoot.Games.CHOOSE_FATE;
     GameRoot defGameRoot;
+
     @BeforeEach
-    public void initializeGame(){
+    public void initializeGame() {
         defGameRoot = new GameRoot(defaultDesc, defaultGameEnum);
     }
+
     @Test
-    public void createGame(){
+    public void createGame() {
         GameRoot gameRoot = new GameRoot("asd", GameRoot.Games.DRAW_RUNS);
     }
+
     @Test
-    public void getInitializedDescription(){
+    public void getInitializedDescription() {
         Assertions.assertEquals(defaultDesc, defGameRoot.getDescription());
     }
+
     @Test
-    public void getInitializedGameEnum(){
+    public void getInitializedGameEnum() {
         Assertions.assertEquals(defaultGameEnum, defGameRoot.getGame());
     }
+
     @Test
-    public void createGameWithNull(){
-        Assertions.assertThrows(NullPointerException.class, ()->{
+    public void createGameWithNull() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
             GameRoot gameRoot = new GameRoot(null, defaultGameEnum);
         });
     }

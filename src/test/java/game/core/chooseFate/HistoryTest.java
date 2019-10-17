@@ -13,29 +13,34 @@ public class HistoryTest {
     History defHistory;
 
     @BeforeEach
-    public void initializeHistory(){
+    public void initializeHistory() {
         defLitigation = Mockito.mock(Litigation.class);
         defHistory = new History(defLitigation, defPosSequence, defNeqSequence);
     }
+
     @Test
-    public void createHistory(){
+    public void createHistory() {
         History history = new History(defLitigation, "posSeq", "negSeq");
     }
+
     @Test
-    public void getInitializedDefPosSequence(){
+    public void getInitializedDefPosSequence() {
         Assertions.assertEquals(defPosSequence, defHistory.getPosSequence());
     }
+
     @Test
-    public void getInitializedDefNegSequence(){
+    public void getInitializedDefNegSequence() {
         Assertions.assertEquals(defNeqSequence, defHistory.getNegSequence());
     }
+
     @Test
-    public void getInitializedDefLitigation(){
+    public void getInitializedDefLitigation() {
         Assertions.assertEquals(defLitigation, defHistory.getLitigation());
     }
+
     @Test
-    public void createHistoryWithNull(){
-        Assertions.assertThrows(NullPointerException.class, ()->{
+    public void createHistoryWithNull() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
             History history = new History(null, defPosSequence, defNeqSequence);
         });
     }

@@ -1,5 +1,7 @@
 package game.context;
 
+import game.core.dataBase.ConsequenceState;
+import game.core.dataBase.HasMoneyState;
 import game.core.dataBase.MapDb;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,87 +9,77 @@ import org.junit.jupiter.api.Test;
 
 public class MapDbTest {
     MapDb defaultBase;
+
     @BeforeEach
-    public void initializeMapDb(){
-        defaultBase = MapDb.getMapDB();
+    public void initializeMapDb() {
+        defaultBase = MapDb.getMapDb();
     }
+
     @Test
-    public void createMapDb(){
-        MapDb base = MapDb.getMapDB();
+    public void createMapDb() {
+        MapDb base = MapDb.getMapDb();
     }
+
     @Test
-    public void MabDbMustBeFilled(){
+    public void MabDbMustBeFilled() {
         String expected = "";
 
-        Assertions.assertEquals(expected, defaultBase.get(String.class, "consequence"));
+        Assertions.assertEquals(expected, defaultBase.get(ConsequenceState.class).get());
     }
+
     @Test
-    public void afterInitializedDbIsHasMoneyMustBeFalse(){
+    public void afterInitializedDbIsHasMoneyMustBeFalse() {
         Boolean expected = false;
 
-        Assertions.assertEquals(expected, defaultBase.get(Boolean.class, "isHasMoney"));
+        Assertions.assertEquals(expected, defaultBase.get(HasMoneyState.class).get());
     }
 
     @Test
-    public void isGetSameObject(){
+    public void isGetSameObject() {
         String expected = "expected";
         String key = "consequence";
-        defaultBase.replace(String.class, key, expected);
+        defaultBase.replace(ConsequenceState.class, new ConsequenceState(expected));
 
-        Assertions.assertEquals(expected, defaultBase.get(String.class, key));
+        Assertions.assertEquals(expected, defaultBase.get(ConsequenceState.class).get());
     }
-    @Test
-    public void dontReplaceTypeInInappropriateMap(){
-        String value = "expected";
-        String key = "consequence";
 
-        Assertions.assertThrows(IllegalArgumentException.class, ()->{
-            defaultBase.replace(Boolean.class, key, value);
-        });
-    }
     @Test
-    public void dontReplaceNull(){
+    public void dontReplaceNull() {
         String value = null;
         String key = "consequence";
 
-        Assertions.assertThrows(NullPointerException.class, ()->{
-            defaultBase.replace(Boolean.class, key, value);
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            defaultBase.replace(ConsequenceState.class, new ConsequenceState(value));
         });
     }
-    @Test
-    public void dontReplaceInAbsentMap(){
-        String value = "";
-        String key = "consequence";
 
-        Assertions.assertThrows(IllegalArgumentException.class, ()->{
-            defaultBase.replace(Integer.class, key, value);
-        });
-    }
     @Test
-    public void dontReplaceWithInappropriateKey(){
+    public void dontReplaceWithInappropriateKey() {
         String value = "consequence";
         String key = "";
 
-        Assertions.assertThrows(IllegalArgumentException.class, ()->{
-            defaultBase.replace(Integer.class, key, value);
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            defaultBase.replace(Boolean.class, new ConsequenceState(value));
         });
     }
+
     @Test
-    public void throwNullDueNullTypeValue(){
+    public void throwNullDueNullTypeValue() {
         String value = "consequence";
         String key = "";
 
-        Assertions.assertThrows(NullPointerException.class, ()->{
-            defaultBase.replace(null, key, value);
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            defaultBase.replace(null, new ConsequenceState(value));
         });
     }
+
     @Test
-    public void throwNullDueNullKey(){
+    public void throwNullDueNullKey() {
         String value = "consequence";
         String key = "";
 
-        Assertions.assertThrows(NullPointerException.class, ()->{
-            defaultBase.replace(String.class, null, value);
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            defaultBase.replace(Boolean.class, null);
         });
     }
 }

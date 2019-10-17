@@ -3,6 +3,7 @@ package game.core.appleTheft;
 import lombok.Data;
 
 import java.util.Random;
+
 @Data
 public class Garden {
     private static final int EMPTY = 0;
@@ -73,7 +74,7 @@ public class Garden {
         return message;
     }
 
-    private void wallBuild(){
+    private void wallBuild() {
         for (int i = 0; i < map.length; ++i) { //walls around the garden
             map[i][0] = WALL;
             map[i][map[i].length - 1] = WALL;
@@ -92,8 +93,7 @@ public class Garden {
                 }
                 if (horizontal && wallY < map[0].length - 1) {
                     wallY++;
-                }
-                else if (wallX < map.length - 2) {
+                } else if (wallX < map.length - 2) {
                     wallX++;
                 }
             }

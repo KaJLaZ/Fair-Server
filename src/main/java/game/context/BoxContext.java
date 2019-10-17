@@ -50,7 +50,7 @@ public class BoxContext {
     }
 
     @Bean
-    public ObjectsWrapper<Box> boxes(Box[] boxes){
+    public ObjectsWrapper<Box> boxes(Box[] boxes) {
         return new ObjectsWrapper<>(boxes);
     }
 }

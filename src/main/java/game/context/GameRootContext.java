@@ -17,9 +17,31 @@ public class GameRootContext {
     }
 
     @Bean
+    public GameRoot secondRootAppleTheft() {
+        String desc = "Цієї ночі ви погано спали, тому прокинулись раніше звичайного і вирішили на сніданок, і на обід" +
+                " приготувати печені яблука, тому в сусідському саду вам потрібно було набрати вдоє більше";
+        return new GameRoot(desc, GameRoot.Games.APPLE_THEFT);
+    }
+
+    @Bean
     public GameRoot chooseFate() {
-        String desc = "Запізднення на роботу у вашого босса карється відсутністю оплати в цей день, тому ви зазвичай\n" +
+        String desc = "Запізнення на роботу у вашого босса карється відсутністю оплати в цей день, тому ви зазвичай\n" +
                 "приходите набагато раніше, і щоб убити час в той день ви вирішили заглянути на стовп ганьби\n";
+        return new GameRoot(desc, GameRoot.Games.CHOOSE_FATE);
+    }
+
+    @Bean
+    public GameRoot secondRootChooseFate() {
+        String desc = "Через програш в вчорашньому алкоджеку ви не пам'ятали як дістались додому, і прокинулись " +
+                "піздніше ніж зазвичай тому вам сьогодні було не до сусідських яблук, але щоб зайти на стовб ганьби" +
+                "у вас час був";
+        return new GameRoot(desc, GameRoot.Games.CHOOSE_FATE);
+    }
+
+    @Bean
+    public GameRoot thirdRootChooseFate() {
+        String desc = "На підході до роботи вас чекали шериф і ваш босс, якому також сьогодні не спалось і як ви\" +\n" +
+                "перелазили огорожу його улюбленого саду";
         return new GameRoot(desc, GameRoot.Games.CHOOSE_FATE);
     }
 
@@ -42,13 +64,98 @@ public class GameRootContext {
     }
 
     @Bean
+    public GameRoot secondRootDrinkers() {
+        String desc = "Так як ви допомогли в'язню уникнути кари, він вирішив вам віддячити фінансово, +\n" +
+                "і ви більше не були змушені йти на в цей день на роботу;";
+        return new GameRoot(desc, GameRoot.Games.DRINKERS);
+    }
+
+    @Bean
     public GameRoot dream() {
-        String desc = "Сон";
+        String desc = "Після тяжкого робочого дня, і відпочинку в таверні ви без задніг звалились на своє ліжко і " +
+                "поринули в нічні сновидіння";
         return new GameRoot(desc, GameRoot.Games.SEQUENCE);
     }
 
     @Bean
-    public ObjectsWrapper<GameRoot> gameRoots(GameRoot[] gameRoots){
-        return new ObjectsWrapper<>(gameRoots);
+    public GameRoot secondRootDream() {
+        String desc = "Так як ви на роботі допустили помилку, в таверні вам немає за що чого святкувати кінець,\n" +
+                "ще одного робочого дня";
+        return new GameRoot(desc, GameRoot.Games.SEQUENCE);
+    }
+
+    @Bean
+    public GameRoot endGame() {
+        String desc = "Ось так я зустрів свою майбутню дружину і мати моїх дітей, яка змінила моє життя";
+        return new GameRoot(desc, GameRoot.Games.END_GAME);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> firstDayFirstRoot(GameRoot appleTheft, GameRoot chooseFate, GameRoot drawRuns,
+                                                      GameRoot drinkers, GameRoot dream) {
+
+        return new ObjectsWrapper<>(appleTheft, chooseFate, drawRuns, drinkers, dream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> firstDaySecondRoot(GameRoot appleTheft, GameRoot chooseFate, GameRoot secondRootDrinkers,
+                                                       GameRoot dream) {
+
+        return new ObjectsWrapper<>(appleTheft, chooseFate, secondRootDrinkers, dream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> firstDayThirdRoot(GameRoot appleTheft, GameRoot chooseFate, GameRoot drawRuns,
+                                                      GameRoot secondRootDream) {
+
+        return new ObjectsWrapper<>(appleTheft, chooseFate, drawRuns, secondRootDream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> secondDayFirstRoot(GameRoot appleTheft, GameRoot chooseFate, GameRoot drawRuns,
+                                                       GameRoot drinkers, GameRoot dream) {
+
+        return new ObjectsWrapper<>(appleTheft, chooseFate, drawRuns, drinkers, dream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> secondDaySecondRoot(GameRoot secondRootChooseFate, GameRoot drawRuns,
+                                                        GameRoot drinkers, GameRoot dream) {
+
+        return new ObjectsWrapper<>(secondRootChooseFate, drawRuns, drinkers, dream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> secondDayThirdRoot(GameRoot appleTheft, GameRoot chooseFate,
+                                                       GameRoot secondRootDrinkers, GameRoot dream) {
+
+        return new ObjectsWrapper<>(appleTheft, chooseFate, secondRootDrinkers, dream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> secondDayFourthRoot(GameRoot appleTheft, GameRoot chooseFate, GameRoot drawRuns,
+                                                        GameRoot secondRootDream) {
+
+        return new ObjectsWrapper<>(appleTheft, chooseFate, drawRuns, secondRootDream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> secondDayFifthRoot(GameRoot secondRootChooseFate, GameRoot drawRuns,
+                                                       GameRoot secondRootDream) {
+
+        return new ObjectsWrapper<>(secondRootChooseFate, drawRuns, secondRootDream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> secondDaySixthRoot(GameRoot secondRootChooseFate,
+                                                       GameRoot secondRootDrinkers, GameRoot dream) {
+
+        return new ObjectsWrapper<>(secondRootChooseFate, secondRootDrinkers, dream);
+    }
+
+    @Bean
+    public ObjectsWrapper<GameRoot> thirdDay(GameRoot secondRootAppleTheft, GameRoot thirdRootChooseFate, GameRoot endGame) {
+
+        return new ObjectsWrapper<>(secondRootAppleTheft, thirdRootChooseFate, endGame);
     }
 }
