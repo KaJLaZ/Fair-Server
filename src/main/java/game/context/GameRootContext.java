@@ -134,21 +134,21 @@ public class GameRootContext {
 
     @Bean
     public ObjectsWrapper<GameRoot> secondDayFourthRoot(GameRoot appleTheft, GameRoot chooseFate, GameRoot drawRuns,
-                                                        GameRoot secondRootDream) {
+                                                         GameRoot secondRootDream) {
 
         return new ObjectsWrapper<>(appleTheft, chooseFate, drawRuns, secondRootDream);
     }
 
     @Bean
     public ObjectsWrapper<GameRoot> secondDayFifthRoot(GameRoot secondRootChooseFate, GameRoot drawRuns,
-                                                       GameRoot secondRootDream) {
+                                                         GameRoot secondRootDream) {
 
         return new ObjectsWrapper<>(secondRootChooseFate, drawRuns, secondRootDream);
     }
 
     @Bean
     public ObjectsWrapper<GameRoot> secondDaySixthRoot(GameRoot secondRootChooseFate,
-                                                       GameRoot secondRootDrinkers, GameRoot dream) {
+                                                        GameRoot secondRootDrinkers, GameRoot dream) {
 
         return new ObjectsWrapper<>(secondRootChooseFate, secondRootDrinkers, dream);
     }
