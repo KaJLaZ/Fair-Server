@@ -44,6 +44,9 @@ public class Game {
         }
         player.setAlcohol(0);
         npc.setAlcohol(0);
+        player.setPassed(false);
+        npc.setPassed(false);
+        player.becomeAbleToSeePrediction();
         return result;
     }
 

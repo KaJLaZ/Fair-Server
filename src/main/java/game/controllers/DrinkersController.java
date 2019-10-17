@@ -24,7 +24,7 @@ public class DrinkersController extends Controller {
     @RequestMapping(method = RequestMethod.GET, value = "/pass")
     public int[] pass() {
         game.getPlayer().pass();
-        while (game.getNpc().getAlcohol() < 950) {
+        while (game.getNpc().getAlcohol() < 850) {
             game.getNpc().npcDrink();
         }
         int[] stats = {game.getPlayer().getAlcohol(), game.getNpc().getAlcohol()};
