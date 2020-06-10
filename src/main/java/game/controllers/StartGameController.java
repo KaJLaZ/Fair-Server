@@ -1,5 +1,6 @@
 package game.controllers;
 
+import game.core.dataBase.services.PrepDB;
 import game.core.dataBase.services.PrepGameStateServ;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class StartGameController {
     @Autowired
     PrepGameStateServ prepGameStateServ;
+    @Autowired
+    PrepDB prepDBServ;
 
     @RequestMapping(method = RequestMethod.GET, value = "/startNewGame")
     public void startNewGame() {
+        prepDBServ.prepareDB();
         prepGameStateServ.prepareDB();
     }
 }

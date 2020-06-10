@@ -19,7 +19,7 @@ public class PrepGameStateServ implements PreparableDB {
     private DayRepository dayRepository;
     @Autowired
     private BoxRepository boxRepository;
-
+    @Override
     public void prepareDB() {
         ArrayList<GameState> baseStates = initializeStates();
         updateDB(baseStates);
